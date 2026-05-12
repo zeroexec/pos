@@ -80,6 +80,18 @@
             font-weight: 300;
         }
 
+        /* BY ADLAN FOOTER */
+        .author-tag {
+            position: absolute;
+            bottom: 40px;
+            left: 100px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
         /* KOLOM KANAN - VALUE PROPOSITION */
         .right-panel {
             background: rgba(255, 255, 255, 0.02);
@@ -117,7 +129,7 @@
             margin-bottom: 0;
         }
 
-        /* BUTTON DESIGN - ULTRA ELEGANT */
+        /* BUTTON DESIGN */
         .btn-launch {
             position: relative;
             background: #fff;
@@ -154,7 +166,6 @@
             transform: translateY(-5px);
         }
 
-        /* DECORATIVE LINE */
         .line {
             width: 40px;
             height: 1px;
@@ -162,7 +173,6 @@
             margin-bottom: 30px;
         }
 
-        /* ANIMATIONS */
         .fade-in {
             animation: fadeIn 1.2s ease-out forwards;
         }
@@ -176,6 +186,7 @@
             .container { grid-template-columns: 1fr; overflow-y: auto; }
             .left-panel, .right-panel { padding: 60px; height: auto; }
             h1 { font-size: 70px; }
+            .author-tag { left: 60px; bottom: 20px; }
         }
     </style>
 </head>
@@ -191,6 +202,8 @@
             <p class="main-desc">
                 Modul sistem manajemen terintegrasi untuk ekosistem SaaS. Dirancang untuk efisiensi operasional tinggi dengan skalabilitas tanpa batas.
             </p>
+            
+            <div class="author-tag">By Adlan Madjied Ridho</div>
         </div>
 
         <div class="right-panel fade-in" style="animation-delay: 0.3s;">
