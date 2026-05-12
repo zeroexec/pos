@@ -7,186 +7,178 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;800&family=Space+Grotesk:wght@300;700&display=swap');
 
-        * {
-            margin: 0; padding: 0; box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: #000;
             color: #fff;
             height: 100vh;
+            width: 100vw;
             display: flex;
             overflow: hidden;
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* DYNAMIC BACKGROUND */
+        /* BACKGROUND ANIMATION */
         .bg-gradient {
             position: absolute;
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             background: 
-                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(124, 58, 237, 0.08) 0%, transparent 50%);
             z-index: 0;
+            animation: pulseBg 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseBg {
+            from { opacity: 0.5; transform: scale(1); }
+            to { opacity: 1; transform: scale(1.1); }
         }
 
         .container {
             display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            width: 100%;
-            height: 100%;
-            position: relative;
-            z-index: 1;
+            grid-template-columns: 1fr 1fr;
+            width: 100%; height: 100%;
+            position: relative; z-index: 1;
         }
 
-        /* KOLOM KIRI - BRAND IDENTITY */
         .left-panel {
-            padding: 100px;
+            padding: 5% 8%;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            position: relative;
+        }
+
+        /* ANIMASI VARIASI 1: Slide & Fade (Top) */
+        .author-credit {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 40px;
+            animation: slideDown 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+
+        /* ANIMASI VARIASI 2: Width Expansion */
+        .line {
+            width: 0; height: 1px;
+            background: #6366f1;
+            margin-bottom: 25px;
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.8);
+            animation: expandWidth 1.2s 0.3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
         }
 
         .tagline {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 13px;
+            font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 0.5em;
             color: #6366f1;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             font-weight: 700;
-            opacity: 0.8;
+            opacity: 0;
+            animation: fadeIn 1s 0.5s ease-out forwards;
         }
 
+        /* ANIMASI VARIASI 3: Reveal from Blur */
         h1 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(60px, 8vw, 110px);
+            font-size: clamp(40px, 6vw, 85px);
             font-weight: 700;
-            line-height: 0.85;
+            line-height: 0.9;
             letter-spacing: -0.05em;
-            margin-bottom: 35px;
-            background: linear-gradient(to bottom, #fff 40%, #444 100%);
+            margin-bottom: 25px;
+            background: linear-gradient(to bottom, #fff 40%, #666 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            filter: blur(10px);
+            animation: revealBlur 1.2s 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
         }
 
         .main-desc {
-            font-size: 18px;
+            font-size: 16px;
             color: #888;
-            line-height: 1.7;
-            max-width: 480px;
+            line-height: 1.6;
+            max-width: 420px;
             font-weight: 300;
+            opacity: 0;
+            animation: fadeIn 1s 0.8s ease-out forwards;
         }
 
-        /* BY ADLAN FOOTER */
-        .author-tag {
-            position: absolute;
-            bottom: 40px;
-            left: 100px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        /* KOLOM KANAN - VALUE PROPOSITION */
         .right-panel {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.01);
             backdrop-filter: blur(50px);
             border-left: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 100px;
+            padding: 5% 8%;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
+        /* ANIMASI VARIASI 4: Floating Card */
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 50px;
-            position: relative;
-            margin-bottom: 50px;
-            transition: all 0.5s ease;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 40px;
+            margin-bottom: 40px;
+            max-width: 500px;
+            opacity: 0;
+            transform: translateX(30px);
+            animation: slideInLeft 1s 1s cubic-bezier(0.23, 1, 0.32, 1) forwards, float 6s ease-in-out infinite;
         }
 
-        .glass-card:hover {
-            border-color: rgba(99, 102, 241, 0.4);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .glass-card p {
-            font-size: 17px;
-            color: #ccc;
-            line-height: 1.9;
-            font-weight: 300;
-            margin-bottom: 20px;
-        }
-
-        .glass-card p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* BUTTON DESIGN */
         .btn-launch {
-            position: relative;
             background: #fff;
             color: #000;
-            padding: 22px 60px;
+            padding: 18px 45px;
             font-weight: 800;
-            font-size: 14px;
+            font-size: 12px;
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 3px;
-            display: inline-block;
             width: fit-content;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .btn-launch::before {
-            content: "";
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: 0.5s;
-        }
-
-        .btn-launch:hover::before {
-            left: 100%;
+            opacity: 0;
+            animation: fadeIn 1s 1.3s ease-out forwards;
+            transition: all 0.4s ease;
         }
 
         .btn-launch:hover {
             background: #6366f1;
             color: #fff;
-            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
-            transform: translateY(-5px);
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
         }
 
-        .line {
-            width: 40px;
-            height: 1px;
-            background: #6366f1;
-            margin-bottom: 30px;
-        }
-
-        .fade-in {
-            animation: fadeIn 1.2s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+        /* KEYFRAMES LIBRARY */
+        @keyframes fadeIn { to { opacity: 1; } }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @media (max-width: 1100px) {
+        @keyframes expandWidth {
+            to { width: 60px; }
+        }
+
+        @keyframes revealBlur {
+            to { filter: blur(0); opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideInLeft {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-10px) translateX(5px); }
+        }
+
+        @media (max-width: 1024px) {
             .container { grid-template-columns: 1fr; overflow-y: auto; }
-            .left-panel, .right-panel { padding: 60px; height: auto; }
-            h1 { font-size: 70px; }
-            .author-tag { left: 60px; bottom: 20px; }
+            body { overflow: auto; }
+            .left-panel, .right-panel { padding: 40px 20px; height: auto; }
         }
     </style>
 </head>
@@ -195,24 +187,23 @@
     <div class="bg-gradient"></div>
 
     <div class="container">
-        <div class="left-panel fade-in">
+        <div class="left-panel">
+            <div class="author-credit">by Adlan Madjied Ridho</div>
             <span class="tagline">System Integration</span>
             <div class="line"></div>
             <h1>SISTEM<br>POS.</h1>
             <p class="main-desc">
                 Modul sistem manajemen terintegrasi untuk ekosistem SaaS. Dirancang untuk efisiensi operasional tinggi dengan skalabilitas tanpa batas.
             </p>
-            
-            <div class="author-tag">By Adlan Madjied Ridho</div>
         </div>
 
-        <div class="right-panel fade-in" style="animation-delay: 0.3s;">
+        <div class="right-panel">
             <div class="glass-card">
-                <p>
+                <p style="margin-bottom: 15px; color: #aaa; font-size: 15px; line-height: 1.7; font-weight: 300;">
                     Sistem ini merupakan salah satu modul inti yang akan diintegrasikan ke dalam proyek website SaaS Subscription.
                 </p>
-                <p>
-                    Menghadirkan kedalaman integrasi yang melampaui sistem kasir konvensional, menciptakan ekosistem bisnis yang kokoh dengan potensi minat konsumen yang sangat signifikan.
+                <p style="color: #aaa; font-size: 15px; line-height: 1.7; font-weight: 300;">
+                    Menghadirkan sistem melokal dan mampu melampaui dan melengkapi platform yang sudah ada. Tentunya, proyek yang direncanakan diprediksi memiliki persentase potensi minat user yang tinggi.
                 </p>
             </div>
 
